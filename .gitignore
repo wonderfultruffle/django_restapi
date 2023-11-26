@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+.vscode/
+db.sqlite3
+pyvenv.cfg
+restapi/*
+
+
