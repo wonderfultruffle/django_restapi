@@ -20,21 +20,25 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from rest_framework.authtoken import views
+
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="Django_restapi",
       default_version='v1',
-      description="Test description",
+      description="Test API document",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="contact@snippets.local"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
-   permission_classes=(permissions.AllowAny,),
+   permission_classes=[permissions.AllowAny,],
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/doc/', schema_view.with_ui("Booking API Manual", cache_timeout=0)), #
+    path('api/doc', schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    path('api/sg', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path("api/get_token/", views.obtain_auth_token),
     path('', include("booking.urls")),
 ]

@@ -1,5 +1,4 @@
 from django.urls import path
-# from drf_yasg.urlpatterns import format_suffix_patterns
 from .views import *
 
 urlpatterns = [
